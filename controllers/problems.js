@@ -7,6 +7,18 @@ const search = (req, res) => {
 
 const view_sol = (req, res) => {
     const problem_id = req.params.problem_id
+    //TODO decrypt problem_id
+    Problem.findById(problem_id, (err, result) => {
+        if (err){
+            console.log(err)
+        }
+        if (result){
+            return res.status(200).send(result)
+        }
+        else{
+            return res.status(404).send('problem not found')
+        }
+    })
 }
 
 const submit = (req, res) => {
