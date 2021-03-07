@@ -1,0 +1,68 @@
+body{
+    display : block;
+    padding-right : 10px;
+}
+#top-bar{
+    padding : 5px 5px 10px 5px;
+    background-color: black;
+    color: white;
+    display : inline-flex;
+    font-family: 'Ubuntu Mono', monospace;
+    width : 100%;
+}
+#title{
+    
+    font-weight: bold;
+    font-size: 70px;
+    margin-top : 2px;
+    margin-left: 2pX;
+}
+#submit-button{
+    height : 20px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: 'Ubuntu Mono', monospace;
+    background-color: teal;
+    color: white;
+    border-radius: 4px;
+    border-color: teal;
+}
+#search-bar{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 2px;
+    margin-left: auto;
+    font-family: 'Ubuntu Mono', monospace;
+}
+#search-box{
+    height : 20px;
+    width : 300px;
+}
+
+.search-result{
+    width: 100%;
+    border-style: solid;
+    border-color :brown;
+    border-width: 2px;
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    font-family: 'Ubuntu Mono', monospace;
+}
+.problem_title{
+    font-weight: bold;
+    font-size: 20px;
+}
+.solution_author{
+    margin-top: 5px;
+}
+.view-sol-button{
+    background-color: crimson;
+    color: white;
+    margin-top: 5px;
+    border:none;
+    padding : 5px;
+    font-family: 'Ubuntu Mono', monospace;
+}

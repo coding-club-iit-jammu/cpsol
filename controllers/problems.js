@@ -8,7 +8,12 @@ const search = (req, res) => {
         __v: false,
         md : false,
         video_link : false,
-        writeup_md  :false,
+        writeup_md  : false,
+        uploaded_by : {
+            //TODO returns different id for each call
+            '_id' : false,
+            uid : false
+        },
         score : { $meta: "textScore" }
     }
     Problem.find(
@@ -44,6 +49,7 @@ const view_sol = (req, res) => {
 }
 
 const submit = (req, res) => {
+    console.log(req.uid)
     const video = req.files.sol_video
     const {title, link, md, writeup_md} = req.body
     if (!req.files || Object.keys(req.files).length === 0) {
@@ -53,12 +59,14 @@ const submit = (req, res) => {
     //TODO check for valid file (format + size)
     gdrive.uploadFile('test_name', video.tempFilePath, video.mimetype, (public_link) => {
         //insert db record
+        //TODO delete tmp file
         const problem = new Problem({
             'title' : title,
             'link'  : link,
             'md'    : md,
             'video_link'    : public_link,
-            'writeup_md'    : writeup_md          
+            'writeup_md'    : writeup_md,
+            'uploaded_by'   : req.uploaded_by       
         })
         problem.save()
         .then((result) => {

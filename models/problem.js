@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const schema = mongoose.Schema
-
+const userSchema = require('./user')
 const problemSchema = new schema({
     title : {
         type : String,
@@ -21,6 +21,10 @@ const problemSchema = new schema({
     writeup_md : {
         type : String,
         required : false
+    },
+    uploaded_by : {
+        type : userSchema,
+        required : true
     }
 })
 problemSchema.index({

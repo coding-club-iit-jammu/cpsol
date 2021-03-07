@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="/__/firebase/8.2.9/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/8.2.9/firebase-auth.js"></script>
+    <script src="/__/firebase/8.2.9/firebase-functions.js"></script>
+    <script src="/__/firebase/8.2.9/firebase-analytics.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+    <link rel="stylesheet" href = "./css/index.css">
+    <script src = "./js/session.js"></script>
+
+    <title>cpSol</title>
+</head>
+<body>
+    <div id = "top-bar">
+        <div id = "title">
+            cpSol
+        </div>
+        <button id = "submit-button">Submit a solution</button>
+        <div id = "search-bar">
+            <input type = "text" id = "search-box" placeholder="Type search term and press enter">
+        </div>
+    </div>
+    <div id = "search-results">
+        <div class = "search-result">
+            <div class = "problem_title">
+                Rotten Oranges
+            </div>
+            <div class = "problem_link">
+                <a href = "https://leetcode.com/problems/rotting-oranges/">https://leetcode.com/problems/rotting-oranges</a>
+            </div>
+            <div class = "solution_author">
+                Solution by : codingclub@iitjammu.ac.in
+            </div>
+            <div>
+                <button class ="view-sol-button">View Solution</button>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
