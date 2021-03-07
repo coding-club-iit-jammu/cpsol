@@ -13,6 +13,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "googleapis": "^39.2.0",
-    "mongoose": "^5.11.18"
+    "mongoose": "^5.11.18",
+    "nodemon": "^2.0.7"
   }
 }

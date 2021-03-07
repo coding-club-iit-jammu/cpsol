@@ -23,6 +23,8 @@ const problemSchema = new schema({
         required : false
     }
 })
-
+problemSchema.index({
+    title : 'text'
+})
 const Problem = mongoose.model('Problem', problemSchema)
 module.exports = Problem

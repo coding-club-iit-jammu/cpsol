@@ -2,7 +2,29 @@ const Problem = require('../models').Problem
 const {gdrive} = require('../helpers')
 
 const search = (req, res) => {
-    const search_term = req.query.term
+    const search_term = req.query.search_term
+
+    let problemProjection = { 
+        __v: false,
+        md : false,
+        video_link : false,
+        writeup_md  :false,
+        score : { $meta: "textScore" }
+    }
+    Problem.find(
+        { $text : { $search : search_term} },
+        problemProjection
+    )
+    .sort({ score : { $meta : 'textScore' } })
+    .exec((err, results) => {
+        if (err){
+            console.log(err)
+        }
+        if (results){
+            return res.status(200).send(results)
+        }
+    });
+    
 }
 
 const view_sol = (req, res) => {

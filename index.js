@@ -14,7 +14,7 @@ app.use(routes)
 global.gauth
 const gdrive = require('./helpers/gdrive')
 gdrive.gdriveInit(() => {
-  mongoose.connect("mongodb://localhost:27017/cpsol", {useNewUrlParser : true, useUnifiedTopology : true})
+  mongoose.connect("mongodb://localhost:27017/cpsol", {useNewUrlParser : true, useUnifiedTopology : true, useCreateIndex : true})
     .then((result) => {
         console.log('Connected to Database')
         app.listen(3000, () => {
