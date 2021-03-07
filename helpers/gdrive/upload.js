@@ -9,7 +9,7 @@ function uploadFile(file_name, file_path, mime, callback) {
     const drive = google.drive({version: 'v3', auth});
     const fileMetadata = {
       'name': file_name,
-      parents: ['1gVcxy6b2S_rWiItZ3rD-zj5Epj7gi-Xj'] //TODO get from env
+      parents: [process.env.GOOGLE_DRIVE_PARENT_FOLDER]
     };
     const media = {
       mimeType: mime,

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const routes = require('./routes')
 const fileUpload = require('express-fileupload')
@@ -14,7 +15,7 @@ app.use(routes)
 global.gauth
 const gdrive = require('./helpers/gdrive')
 gdrive.gdriveInit(() => {
-  mongoose.connect("mongodb://localhost:27017/cpsol", {useNewUrlParser : true, useUnifiedTopology : true, useCreateIndex : true})
+  mongoose.connect(process.env.DB_URL, {useNewUrlParser : true, useUnifiedTopology : true, useCreateIndex : true})
     .then((result) => {
         console.log('Connected to Database')
         app.listen(3000, () => {

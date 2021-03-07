@@ -11,8 +11,8 @@ const TOKEN_PATH = 'token.json';
 
 // Load client secrets from a local file.
 const gdriveInit = async (callback) => {
-    //TODO get from env
-    fs.readFile('credentials.json', (err, content) => {
+    const cred_file = process.env.GOOGLE_DRIVE_CREDENTIALS
+    fs.readFile(cred_file, (err, content) => {
         global.credentials = JSON.parse(content)
     if (err) return console.log('Error loading client secret file:', err);
     // Authorize a client with credentials, then call the Google Drive API.
