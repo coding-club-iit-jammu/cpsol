@@ -4,7 +4,7 @@ const routes = require('./routes')
 const fileUpload = require('express-fileupload')
 const mongoose = require('mongoose')
 const auth_service = require('./helpers').auth
-
+const gdrive = require('./helpers/gdrive')
 const app = express()
 app.use(fileUpload({
     useTempFiles : true,
@@ -13,8 +13,7 @@ app.use(fileUpload({
 app.use(routes)
 app.use(express.static('./public'))
 
-global.gauth
-const gdrive = require('./helpers/gdrive')
+
 gdrive.gdriveInit(() => {
   mongoose.connect(process.env.DB_URL, {useNewUrlParser : true, useUnifiedTopology : true, useCreateIndex : true})
     .then((result) => {

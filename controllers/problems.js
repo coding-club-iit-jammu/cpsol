@@ -49,7 +49,6 @@ const view_sol = (req, res) => {
 }
 
 const submit = (req, res) => {
-    console.log(req.uid)
     const video = req.files.sol_video
     const {title, link, md, writeup_md} = req.body
     if (!req.files || Object.keys(req.files).length === 0) {
@@ -58,7 +57,11 @@ const submit = (req, res) => {
     
     //TODO check for valid file (format + size)
     gdrive.uploadFile('test_name', video.tempFilePath, video.mimetype, (public_link) => {
-        fs.unlink(video.tempFilePath)
+        fs.unlink(video.tempFilePath, (err) => {
+            if (err){
+                console.log(err)
+            }
+        })
 
         //insert db record
         const problem = new Problem({

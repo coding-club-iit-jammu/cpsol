@@ -4,8 +4,8 @@ const {google} = require('googleapis');
 * Describe with given media and metaData and upload it using google.drive.create method()
 */ 
 
-function uploadFile(file_name, file_path, mime, callback) {
-  const auth = global.gauth
+function uploadFile(gauth, file_name, file_path, mime, callback) {
+    const auth = gauth
     const drive = google.drive({version: 'v3', auth});
     const fileMetadata = {
       'name': file_name,
