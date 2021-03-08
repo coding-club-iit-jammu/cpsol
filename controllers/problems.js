@@ -1,6 +1,6 @@
 const Problem = require('../models').Problem
 const {gdrive} = require('../helpers')
-
+const fs = require('fs')
 const search = (req, res) => {
     const search_term = req.query.search_term
 
@@ -58,8 +58,9 @@ const submit = (req, res) => {
     
     //TODO check for valid file (format + size)
     gdrive.uploadFile('test_name', video.tempFilePath, video.mimetype, (public_link) => {
+        fs.unlink(video.tempFilePath)
+
         //insert db record
-        //TODO delete tmp file
         const problem = new Problem({
             'title' : title,
             'link'  : link,
