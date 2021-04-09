@@ -29,9 +29,9 @@ const extract_auth = (req, res, next) => {
     .catch((error) => {
         console.log(error)
         if (error.code == 'auth/id-token-revoked') {
-            return res.redirect('/signout')
+            return res.redirect('/signout.html')
         } else {
-            return res.redirect('/login')
+            return res.redirect('/login.html')
         }
     });
 }

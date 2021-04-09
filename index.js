@@ -10,6 +10,7 @@ app.use(fileUpload({
     useTempFiles : true,
     tempFileDir : './tmp/'
   }))
+app.use(express.json())
 app.use(routes)
 app.use(express.static('./public'))
 

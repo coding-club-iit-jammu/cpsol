@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href = "./css/submit.css">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyB2UVQCjUgG2Ar3r0BJWq5oRY8DHMDIebk",
+            authDomain: "cpsol-d7f90.firebaseapp.com",
+            databaseURL: "https://cpsol-d7f90-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "cpsol-d7f90",
+            storageBucket: "cpsol-d7f90.appspot.com",
+            messagingSenderId: "545689265856",
+            appId: "1:545689265856:web:e05d6d140df69977c46f25",
+            measurementId: "G-N8GVRNQRKY"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        </script>
+
+    
+    <title>Submit a solution</title>
+</head>
+<body>
+    <form class = "contact-us" method = "POST" action = "/problems" enctype="multipart/form-data">
+        <input placeholder="Problem Title" type="text" required="" name="title">
+        <input placeholder="Problem link (leetcode, codechef etc)" type="text" name="link">
+        <input placeholder="Problem MD" type="text" name="md">
+        <input placeholder="Writeup MD" type="text" name="writeup_md">
+        <input placeholder= "Solution Video" type="file" name="sol_video">
+        <input type = "hidden" name = "id_token" id = "id-token">
+        <input type="submit" id = "submit-button" value = "submit">
+    </form>
+    <script src = "./js/submit.js"></script>
+</body>
+</html>
+    
