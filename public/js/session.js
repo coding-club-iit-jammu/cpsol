@@ -44,5 +44,5 @@ var proceedToSignIn=function(){
     window.open('login.html',"_self")
 }
 var proceedToIndex=function(){
-    window.open('index',"_self")
+    window.open('index.html',"_self")
 }
