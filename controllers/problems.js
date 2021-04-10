@@ -1,6 +1,7 @@
 const Problem = require('../models').Problem
 const {gdrive} = require('../helpers')
 const fs = require('fs')
+
 const search = (req, res) => {
     const search_term = req.query.search_term
 
@@ -40,7 +41,9 @@ const view_sol = (req, res) => {
             console.log(err)
         }
         if (result){
-            return res.status(200).send(result)
+            result.preview_link = result.video_link.substring(0, result.video_link.indexOf('/view')) + '/preview'
+            res.status(200)
+            return res.render('solution', {sol : result})
         }
         else{
             return res.status(404).send('problem not found')

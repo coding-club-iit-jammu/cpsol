@@ -5,7 +5,10 @@ const fileUpload = require('express-fileupload')
 const mongoose = require('mongoose')
 const auth_service = require('./helpers').auth
 const gdrive = require('./helpers/gdrive')
+
 const app = express()
+
+app.set('view engine','ejs')
 app.use(fileUpload({
     useTempFiles : true,
     tempFileDir : './tmp/'
