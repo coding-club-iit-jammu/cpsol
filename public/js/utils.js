@@ -59,7 +59,7 @@ const formatSearchResult = (result) => {
             Solution by : ${result.email}
         </div>
         <div>
-            <button class ="view-sol-button">View Solution</button>
+            <button class ="view-sol-button" onclick="location.href='/problems/${result._id}';" >View Solution</button>
         </div>
         </div>
     `

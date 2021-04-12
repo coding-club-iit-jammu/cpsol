@@ -1,6 +1,8 @@
 const Problem = require('../models').Problem
 const {gdrive} = require('../helpers')
 const fs = require('fs')
+const MarkdownIt = require('markdown-it')
+
 
 const search = (req, res) => {
     const search_term = req.query.search_term
@@ -41,7 +43,10 @@ const view_sol = (req, res) => {
             console.log(err)
         }
         if (result){
+            md = new MarkdownIt();
             result.preview_link = result.video_link.substring(0, result.video_link.indexOf('/view')) + '/preview'
+            result.writeup_html = md.render(result.writeup_md)
+            result.problem_html = md.render(result.md)  
             res.status(200)
             return res.render('solution', {sol : result})
         }

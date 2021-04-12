@@ -10,6 +10,12 @@
     <div>
         <%=sol.title %>
     </div>
-    <iframe height="400px" width="600px" src = "<%=sol.preview_link%>"></iframe>
+    <div>
+        <%-sol.problem_html %>
+    </div>
+    <div>
+        <%-sol.writeup_html %>
+    </div>
+    <div><iframe height="400px" width="600px" src = "<%=sol.preview_link%>"></iframe></div>
 </body>
 </html>
