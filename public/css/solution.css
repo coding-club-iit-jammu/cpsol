@@ -1,0 +1,34 @@
+#problem-name{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 50px;
+}
+#problem-link{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+}
+.div-heading{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+#problem-description{
+    padding-top: 20px;
+    width : 800px;
+    margin : auto;
+}
+
+#sol-writeup{
+    padding-top: 20px;
+    width : 800px;
+    margin : auto;   
+}
+.md-render{
+    background-color: antiquewhite;
+    padding : 5px 5px;
+    font-family: 'Source Code Pro', monospace;
+}
+#sol-video{
+    padding-top: 20px;
+    margin : auto;
+    width : 800px;
+}
