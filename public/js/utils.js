@@ -26,6 +26,7 @@ const search = () => {
         response.json().then(function(results) {
             
             search_result_div.innerHTML = ""
+            console.log(results)
             results.forEach((result) => {
                 search_result_div.innerHTML += formatSearchResult(result)
             })
@@ -56,7 +57,7 @@ const formatSearchResult = (result) => {
             <a href = "${result.link}">${result.link}</a>
         </div>
         <div class = "solution_author">
-            Solution by : ${result.email}
+            Solution by : ${result.uploaded_by.name}
         </div>
         <div>
             <button class ="view-sol-button" onclick="location.href='/problems/${result._id}';" >View Solution</button>

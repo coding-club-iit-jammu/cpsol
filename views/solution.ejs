@@ -14,8 +14,10 @@
     <div id = "problem-name">
         <%=sol.title %>
     </div>
-    <div id = "problem-link">
+    <div id = "problem-meta">
         Link - <a href="<%=sol.link%>"><%=sol.link%></a>
+        <br>
+        Solution by - <%= sol.uploaded_by.name %> (<%= sol.uploaded_by.email %>)
     </div>
     <div id = "problem-description">
         <div class = "div-heading">
