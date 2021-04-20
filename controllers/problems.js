@@ -1,9 +1,9 @@
 const Problem = require('../models').Problem
-const {gdrive} = require('../helpers')
+const {gdrive, antivirus} = require('../helpers')
 const fs = require('fs')
 const MarkdownIt = require('markdown-it')
 
-
+const valid_mime = ['video/mp4']
 const search = (req, res) => {
     const search_term = req.query.search_term
 
@@ -63,7 +63,23 @@ const submit = (req, res) => {
         return res.status(400).send('No files were uploaded.');
       }
     
-    //TODO check for valid file (format + size)
+    //check valid type
+    if (!valid_mime.includes(video.mimetype)){
+        return res.status(400).send('Invalid file type')
+    }
+
+    //TODO antivirus scan
+    antivirus.is_infected(video.tempFilePath, (err, file, is_infected, viruses) => {
+        if (err) return console.error(err);
+     
+        if (is_infected) {
+            console.log(`${file} is infected with ${viruses.join(', ')}.`)
+            return res.status(400).send('Malicious File')
+            
+        }
+    })
+
+    //TODO check size
     gdrive.uploadFile('test_name', video.tempFilePath, video.mimetype, (public_link) => {
         fs.unlink(video.tempFilePath, (err) => {
             if (err){
