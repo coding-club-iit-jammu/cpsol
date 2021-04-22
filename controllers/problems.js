@@ -68,42 +68,53 @@ const submit = (req, res) => {
         return res.status(400).send('Invalid file type')
     }
 
-    //TODO antivirus scan
-    antivirus.is_infected(video.tempFilePath, (err, file, is_infected, viruses) => {
-        if (err) return console.error(err);
-     
-        if (is_infected) {
-            console.log(`${file} is infected with ${viruses.join(', ')}.`)
-            return res.status(400).send('Malicious File')
-            
-        }
-    })
-
-    //TODO check size
-    gdrive.uploadFile('test_name', video.tempFilePath, video.mimetype, (public_link) => {
-        fs.unlink(video.tempFilePath, (err) => {
-            if (err){
-                console.log(err)
+    //antivirus scan
+    antivirus.then(clamscan => {
+        clamscan.is_infected(video.tempFilePath, (err, file, is_infected) => {
+            // If there's an error, log it
+            if (err) {
+                console.error("ERROR: " + err);
+                console.trace(err.stack);
+                process.exit(1);
             }
-        })
 
-        //insert db record
-        const problem = new Problem({
-            'title' : title,
-            'link'  : link,
-            'md'    : md,
-            'video_link'    : public_link,
-            'writeup_md'    : writeup_md,
-            'uploaded_by'   : req.uploaded_by       
-        })
-        problem.save()
-        .then((result) => {
-            return res.status(200).send()
-        })
-        .catch((err) => {
-            return res.status(500).send()
-        })
-    })
+            // If `is_infected` is TRUE, file is a virus!
+            if (is_infected === true) {
+                return res.status(400).send('Malicious File')
+            } else if (is_infected === null) {
+                return res.status(400).send('Antivirus Failed')
+            } else if (is_infected === false) {
+                //TODO check size
+                gdrive.uploadFile('test_name', video.tempFilePath, video.mimetype, (public_link) => {
+                    fs.unlink(video.tempFilePath, (err) => {
+                        if (err){
+                            console.log(err)
+                        }
+                    })
+
+                    //insert db record
+                    const problem = new Problem({
+                        'title' : title,
+                        'link'  : link,
+                        'md'    : md,
+                        'video_link'    : public_link,
+                        'writeup_md'    : writeup_md,
+                        'uploaded_by'   : req.uploaded_by       
+                    })
+                    problem.save()
+                    .then((result) => {
+                        return res.status(200).send('File Uploaded')
+                    })
+                    .catch((err) => {
+                        return res.status(500).send()
+                    })
+                })
+            }
+        });
+    });
+
+
+    
 
 }
 

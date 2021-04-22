@@ -18,7 +18,9 @@
     "firebase-admin": "^9.5.0",
     "googleapis": "^39.2.0",
     "markdown-it": "^12.0.4",
-    "mongoose": "^5.11.18",
+    "mongoose": "^5.11.18"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.7"
   }
 }
