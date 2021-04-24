@@ -4,35 +4,21 @@ const fs = require('fs')
 const MarkdownIt = require('markdown-it')
 
 const valid_mime = ['video/mp4']
+
 const search = (req, res) => {
     const search_term = req.query.search_term
 
-    let problemProjection = { 
-        __v: false,
-        md : false,
-        video_link : false,
-        writeup_md  : false,
-        uploaded_by : {
-            //TODO returns different id for each call
-            '_id' : false,
-            uid : false
-        },
-        score : { $meta: "textScore" }
-    }
-    Problem.find(
-        { $text : { $search : search_term} },
-        problemProjection
-    )
-    .sort({ score : { $meta : 'textScore' } })
-    .exec((err, results) => {
+    Problem.search({
+        index : 'problems',
+        query_string : {
+            query : search_term
+        }
+    }, (err, results) => {
         if (err){
-            console.log(err)
+            console.error(err)
         }
-        if (results){
-            return res.status(200).send(results)
-        }
-    });
-    
+        console.log(results)
+    })    
 }
 
 const view_sol = (req, res) => {
@@ -73,12 +59,11 @@ const submit = (req, res) => {
         clamscan.is_infected(video.tempFilePath, (err, file, is_infected) => {
             // If there's an error, log it
             if (err) {
-                console.error("ERROR: " + err);
+                console.error(err);
                 console.trace(err.stack);
                 process.exit(1);
             }
 
-            // If `is_infected` is TRUE, file is a virus!
             if (is_infected === true) {
                 return res.status(400).send('Malicious File')
             } else if (is_infected === null) {
@@ -106,6 +91,7 @@ const submit = (req, res) => {
                         return res.status(200).send('File Uploaded')
                     })
                     .catch((err) => {
+                        console.error(err)
                         return res.status(500).send()
                     })
                 })
