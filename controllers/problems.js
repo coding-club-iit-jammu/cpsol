@@ -9,15 +9,29 @@ const search = (req, res) => {
     const search_term = req.query.search_term
 
     Problem.search({
-        index : 'problems',
-        query_string : {
-            query : search_term
+            match: {
+                title : {
+                    query : search_term,
+                    fuzziness: 'auto'
+                }
         }
-    }, (err, results) => {
+
+    }, {},
+    (err, results) => {
         if (err){
             console.error(err)
         }
-        console.log(results)
+        console.log(results.hits)
+        let search_results = []
+        search_results = results.hits.hits.map((hit) => {
+            let new_ele = hit._source
+            //TODO do not index these at all
+            delete new_ele.uploaded_by.uid
+            delete new_ele.uploaded_by._id
+            new_ele._id = hit._id
+            return new_ele
+        })
+        return res.status(200).send(search_results)
     })    
 }
 

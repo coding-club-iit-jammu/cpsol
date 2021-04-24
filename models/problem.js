@@ -11,7 +11,7 @@ const problemSchema = new schema({
     link : {
         type : String,
         required : false,
-        es_indexed: false
+        es_indexed: true
     },
     md : {
         type : String,
@@ -31,7 +31,7 @@ const problemSchema = new schema({
     uploaded_by : {
         type : userSchema,
         required : true,
-        es_indexed: false
+        es_indexed: true
     }
 })
 problemSchema.plugin(mongoostatic)
