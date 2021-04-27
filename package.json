@@ -13,11 +13,13 @@
     "detect-file-type": "^0.2.8",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
+    "elasticsearch": "^16.7.2",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "firebase-admin": "^9.5.0",
     "googleapis": "^39.2.0",
     "markdown-it": "^12.0.4",
+    "mongoosastic": "^4.6.0",
     "mongoose": "^5.11.18"
   },
   "devDependencies": {
