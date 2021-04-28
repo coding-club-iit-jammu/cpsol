@@ -2,6 +2,8 @@ const Problem = require('../models').Problem
 const {gdrive, antivirus} = require('../helpers')
 const fs = require('fs')
 const MarkdownIt = require('markdown-it')
+const FileType = require('file-type');
+const readChunk = require('read-chunk');
 
 const valid_mime = ['video/mp4']
 
@@ -64,9 +66,21 @@ const submit = (req, res) => {
       }
     
     //check valid type
-    if (!valid_mime.includes(video.mimetype)){
-        return res.status(400).send('Invalid file type')
-    }
+    //if (!valid_mime.includes(video.mimetype)){
+    //    return res.status(400).send('Invalid file type')
+    //}
+
+    (async () => {
+        const buffer = readChunk.sync(video.tempFilePath, 0, 262);
+        const type = await FileType.fromBuffer(buffer);
+
+        if ( type === undefined ){
+            return res.status(400).send('Problem with File/filetype not supported.')
+        }
+        else if (type['mime']!=='video/mp4'){
+            return res.status(400).send('Only mp4 supported.')
+        }
+    })();
 
     //antivirus scan
     antivirus.then(clamscan => {
