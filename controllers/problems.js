@@ -72,17 +72,16 @@ const submit = (req, res) => {
 
     (async () => {
         const buffer = readChunk.sync(video.tempFilePath, 0, 262);
-        const type = await FileType.fromBuffer(buffer);
+        const videoType = await FileType.fromBuffer(buffer);
 
-        if ( type === undefined ){
+        if ( videoType === undefined ){
             return res.status(400).send('Problem with File/filetype not supported.')
         }
-        else if (type['mime']!=='video/mp4'){
+        else if (!valid_mime.includes(videoType['mime'])){
             return res.status(400).send('Only mp4 supported.')
         }
-    })();
-
-    //antivirus scan
+        else {
+            //antivirus scan
     antivirus.then(clamscan => {
         clamscan.is_infected(video.tempFilePath, (err, file, is_infected) => {
             // If there's an error, log it
@@ -126,9 +125,8 @@ const submit = (req, res) => {
             }
         });
     });
-
-
-    
+        }
+    })();
 
 }
 
