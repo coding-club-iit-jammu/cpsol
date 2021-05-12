@@ -1,3 +1,19 @@
+const md = window.markdownit()
+setInterval(() => {
+    const  problem_md = document.getElementById('problem_md').value
+    const rendered_md = md.render(problem_md)
+    document.getElementById('problem_render').innerHTML = rendered_md
+},
+1000)
+
+setInterval(() => {
+    const  writeup_md = document.getElementById('writeup_md').value
+    const rendered_md = md.render(writeup_md)
+    document.getElementById('writeup_render').innerHTML = rendered_md
+},
+1000)
+
+
 var id_token_field = document.getElementById("id-token")
 window.onload=function(){
     //check if logged in

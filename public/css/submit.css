@@ -1,73 +1,79 @@
-@import url("https://fonts.googleapis.com/css?family=Fjalla+One&display=swap");
-* {
-  margin: 0;
-  padding: 0;
+body{
+  font-family: 'Roboto', sans-serif;
 }
-
-body {
-  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg") center center no-repeat;
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  align-items: center;
-  justify-items: center;
+input{
+  font-family: 'Roboto', sans-serif;
 }
-
-.contact-us {
-  background: #f8f4e5;
-  padding: 50px 100px;
-  border: 2px solid black;
-  box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px black;
+.title-block{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-input {
+#submit-form{
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
   display: block;
+}
+
+.md-area{
+  height: 600px;
   width: 100%;
-  font-size: 14pt;
-  line-height: 28pt;
-  font-family: "Fjalla One";
-  margin-bottom: 28pt;
-  border: none;
-  border-bottom: 5px solid black;
-  background: #f8f4e5;
-  min-width: 250px;
-  padding-left: 5px;
-  outline: none;
-  color: black;
+  border: 5px;
+}
+.md-edit-area{
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+}
+.md-editor{
+  width: 47%;
+  height: 100%;
+  
+}
+.md-preview{
+  height: 100%;
+  width: 47%;
+  margin-left: auto;
+  padding: 5px;
+  border-style:solid;
+  border-width: 2px;
+}
+.md-type-area{
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+}
+.form-field{
+  padding : 5px;
+}
+.form-input-long{
+  width: 100%;
+  height: 25px;
+}
+textarea{
+  resize: none;
 }
 
-input:focus {
-  border-bottom: 5px solid #ffa580;
+#video-upload{
+  margin-top: 50px;
 }
 
-#submit-button {
-  display: block;
-  margin: 0 auto;
-  line-height: 28pt;
-  padding: 0 20px;
-  background: #ffa580;
-  letter-spacing: 2px;
-  transition: 0.2s all ease-in-out;
-  outline: none;
-  border: 1px solid black;
-  box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px black;
+#submit-button-div{
+  width: 100px;
+  height : 40px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
-#submit-button:hover {
-  background: black;
+
+
+#submit-button{
+  background-color: black;
   color: white;
-  border: 1px solid black;
-}
-
-::selection {
-  background: #ffc8ff;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-  border-bottom: 5px solid #95a4ff;
-  -webkit-text-fill-color: #2A293E;
-  -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
-  transition: background-color 5000s ease-in-out 0s;
+  border-style: none;
+  padding: 4px 10px 4px 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: larger;
+  border-radius: 3px;
 }
